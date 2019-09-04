@@ -1,14 +1,12 @@
 package com.dubrovskyi.testtask.service;
 
 import com.dubrovskyi.testtask.domain.DirectResponse;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
 
 public interface BusRouteService {
 
-  Map<Integer, Set<Integer>> ROUTEMAP = new HashMap<>();
+  Multimap<Integer, Integer> ROUTEMAP = HashMultimap.create();
 
   void initializeRoutes();
 
