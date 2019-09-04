@@ -1,6 +1,5 @@
 package com.dubrovskyi.testtask;
 
-    import com.dubrovskyi.testtask.service.RouteInitializerImpl;
     import org.springframework.boot.SpringApplication;
     import org.springframework.boot.autoconfigure.SpringBootApplication;
 

@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public interface RouteInitializer {
+public interface BusRouteService {
 
   Map<Integer, Set<Integer>> ROUTEMAP = new HashMap<>();
 
