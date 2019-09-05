@@ -67,10 +67,10 @@ public class BusRouteServiceImplTest {
 
   @Test
   public void initializeRouteInconsistaentFile() throws Exception {
-    String[] strings = { "testInconsistent" };
+    String[] strings = { "testInconsistent.txt" };
     when(appArgs.getSourceArgs()).thenReturn(strings);
     busRouteService.initializeRoutes();
-    assertEquals (createEmptyRouteMap(), busRouteService.getRoutemap());
+    assertEquals (getIncorrectRoutemap(), busRouteService.getRoutemap());
   }
 
 
@@ -88,18 +88,18 @@ public class BusRouteServiceImplTest {
   public void isDirectTrue() {
     busRouteService.setTestMap(getCorrectRoutemap());
     DirectResponse direct = busRouteService.isDirect(3, 6);
-    assertEquals(3, direct.getDepSid());
-    assertEquals(6, direct.getArrSid());
-    assertTrue(direct.isDirectBusRroute());
+    assertEquals(new Integer(3), direct.getDepartureStationId());
+    assertEquals(new Integer(6), direct.getArrivalStationId());
+    assertTrue(direct.getDirectBusRroute());
   }
 
   @Test
   public void isDirectFalse() {
     busRouteService.setTestMap(getCorrectRoutemap());
     DirectResponse direct = busRouteService.isDirect(0, 5);
-    assertEquals(0, direct.getDepSid());
-    assertEquals(5, direct.getArrSid());
-    assertFalse(direct.isDirectBusRroute());
+    assertEquals(new Integer(0), direct.getDepartureStationId());
+    assertEquals(new Integer(5), direct.getArrivalStationId());
+    assertFalse(direct.getDirectBusRroute());
   }
 
   @After
@@ -147,6 +147,26 @@ public class BusRouteServiceImplTest {
     correctMap.put(3, 1);
 
     correctMap.put(4, 0);
+    correctMap.put(4, 2);
+
+    correctMap.put(5, 1);
+
+    correctMap.put(6, 1);
+    correctMap.put(6, 2);
+
+    return correctMap;
+  }
+
+  private SetMultimap<Integer, Integer> getIncorrectRoutemap() {
+    SetMultimap<Integer, Integer> correctMap = createEmptyRouteMap();
+
+    correctMap.put(null, 0);
+    correctMap.put(null, 2);
+
+    correctMap.put(1, 1);
+
+    correctMap.put(3, 1);
+
     correctMap.put(4, 2);
 
     correctMap.put(5, 1);
