@@ -6,8 +6,6 @@ import com.google.common.collect.Multimap;
 
 public interface BusRouteService {
 
-  Multimap<Integer, Integer> ROUTEMAP = HashMultimap.create();
-
   void initializeRoutes();
 
   DirectResponse isDirect(int depSid, int arrSid);
